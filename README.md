@@ -115,7 +115,6 @@
 ```
 
 * 其他地方(`if`/`else`/`while`/`switch`等)，左花括号不单独另起一行。左花括号后面紧接着的代码块超过5行后，代码块和括号之间要有一行空行；代码块小于5行可以不空行。
-
 > 此条是为了兼容XCode代码提示生成的代码。
 
 ```objc
@@ -145,7 +144,6 @@
 ```
 
 * 建议：if/else中，else与if的右括号之间需要换行
-
 > 为了防止else和上一个if代码块挨在一起，影响阅读，所以建议else和上一个if的右括号之间要换行。
 
 ```objc
@@ -201,7 +199,6 @@ if (a > 0) {
 
 * 代码更新后，相关注释也要更新。
 * 对函数或API接口的注释，都采用[Javadoc](http://en.wikipedia.org/wiki/Javadoc)风格规范。
-
 > 因为XCode5支持直接将Javadoc风格的注释生成文档。
 > 
 > 也有用于添加Javadoc风格注释的XCode插件：[VVDocumenter-Xcode](https://github.com/onevcat/VVDocumenter-Xcode)
@@ -290,7 +287,6 @@ if (a > 0) {
 ```
 
 * getter方法的方法名应该和变量名字相同，不允许使用"get"前缀。
-
 > 本规则仅仅适用于Objective-C，C++使用C++的相关规范
 
 ```objc
@@ -299,7 +295,6 @@ if (a > 0) {
 ```
 
 * 类私有方法以下划线开头
-
 > 如：- (void)_startDownloadFiles;
 > 
 > Objective-C里面没有真正严格意义上私有方法。这里所说的"私有方法"指那些不需要公开的、只会在实现文件中使用的方法。
@@ -317,7 +312,6 @@ if (a > 0) {
 
 * 函数名采用大驼峰式命名方式，参数名采用小驼峰式命名方式。
 * 如果函数和某个特定类型相关，那么函数名前缀要和类型前缀一样。
-
 > 如CGRectMake()、CGContextCreate()等
 
 #### 常量
@@ -339,7 +333,6 @@ NSNumber ZIPCode = [NSNumber numberWithInteger:10018];
 ```
 
 *  定义枚举常量时，使用NS_ENUM或NS_OPTIONS。
-
 > NS_ENUM和NS_OPTIONS都提供了类型检查
 
 ```objc
@@ -402,7 +395,6 @@ typedef NS_OPTIONS(NSUInteger, UICollectionViewScrollPosition) {
 * 属性名和变量名都采用小驼峰式命名规则。
 * 实例变量名以下划线开头，局部变量不能以下划线开头。
 * 禁止使用匈牙利标记法或含蓄不清的缩写单词来命名变量。
-
 > Objective-C中，变量名应该尽量清楚的描述它的用途。这样可以使别人立即明白代码的意思，不要担心这样会导致代码过长。
 
 ```objc
@@ -430,8 +422,7 @@ NSString *varName; //赞成的
 NSString* varName; //不赞成的
 ```
 
-* 使用property时，优先使用点语法。 
-
+* 使用property时，优先使用点语法。
 > 使用点语法会让代码简洁。但对于其他情况，都应该使用方括号语法。
 
 ```objc
@@ -460,7 +451,6 @@ UIApplication.sharedApplication.delegate;
 * Objective-C只使用`YES`和`NO`。
 * `true`和`false`只能用于CoreFoundation，C或C++的代码中。
 * 禁止将某个值或表达式的结果与`YES`进行比较。
-
 > 因为BOOL被定义成signed char。这意味着除了YES(1)和NO(0)以外，它还可能是其他值。因此C或C++中的非0为真并不一定就是YES。
 
 ```objc
@@ -527,7 +517,6 @@ if (!someObject) {
 ## 条件语句
 
 * 条件语句的语句体，即便只有一行，也不能省略花括弧。
-
 > 这样可以减少失误。比如你在if语句体中增加第二行语句的时候，就可能会因为没有花括号而导致新增的第二行语句没有包含在if语句体中。另外，[这里](http://programmers.stackexchange.com/a/16530)还提到了其他的一些危险情况。 
 
 ```objc
@@ -545,7 +534,6 @@ if (!error) return success;
 ```
 
 * 多层嵌套的条件语句，优先考虑条件不成立可以立即跳出的情况。
-
 > Objective-C的代码普遍比较长，如果再加上多层嵌套的条件语句，代码缩进会增多，代码会变得更长，会影响可读性。比如，下面这种情况，换成优先考虑可以跳出的情况，可以有效的减少代码缩进长度：
 
 ```objc
@@ -580,7 +568,6 @@ if (!c) {
 ```
 
 * 三目运算只有在能增加代码清晰度和整洁度的时候才推荐使用。
-
 > 三目运算符(?:)，如果不能增加代码整洁度和清晰度，使用时就要谨慎。特别是，嵌套使用多个三目运算，这种要尽量避免。因为它会使代码更难阅读。
 > 
 > 另外，三目运算符中的条件判断是一个语句，最好用小括号括起来。如果直接是一个布尔值则无需括号。例如：
@@ -605,7 +592,6 @@ result = a > b ? x = c > d ? c : d : y;
 ## CGRect函数
 
 * 访问CGRect中的x、y、width或height元素时，不直接访问而是使用[CGGeometry](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html)相关函数：
-
 > CGGeometry里面的函数，会对CGRect参数进行隐式的标准化处理，然后再计算结果。因此，你应该避免直接读取或重写CGRect数据结构里面的值，而要使用这些函数来进行相关操作。
 > 
 > 什么叫标准化处理，参见[CGGeometry Reference](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html)的Overview章节。
@@ -634,7 +620,6 @@ CGRect frame = (CGRect){ .origin = CGPointZero, .size = frame.size };
 ## Xcode工程结构
 
 * 实体文件应该和XCode工程文件保持同步，防止出现文件不一致。
-
 > 任何手动创建的XCode Group都应该在文件系统有一个对应的文件夹。代码不仅要根据类型组织，更要以更加清晰的特征来区分归类。
 
 * 在可能的情况下，始终要勾选在Build设置选项中”Treat Warnings as Errors（将告警视为错误）“选项。同时尽可能多的暴露更多的additional warnings(附加告警)。如果要忽略某类特定Warning（告警），请使用[Clang's pragma feature](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas)。
