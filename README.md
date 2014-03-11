@@ -42,33 +42,33 @@
 
 * delgate或协议相关方法放到一般内容之后。
 
-		```objc
-		#pragma mark - Lifecycle
-		
-		- (void)dealloc {}
-		- (instancetype)init {}
-		- (void)viewDidLoad {}
-		- (void)viewWillAppear:(BOOL)animated {}
-		- (void)didReceiveMemoryWarning {}
-		
-		#pragma mark - Custom Accessors
-		
-		- (void)setCustomProperty:(id)value {}
-		- (id)customProperty {}
-		
-		#pragma mark - Protocol conformance
-		#pragma mark - UITextFieldDelegate
-		#pragma mark - UITableViewDataSource
-		#pragma mark - UITableViewDelegate
-		
-		#pragma mark - NSCopying
-		
-		- (id)copyWithZone:(NSZone *)zone {}
-		
-		#pragma mark - NSObject
-		
-		- (NSString *)description {}
-		```
+	```objc
+	#pragma mark - Lifecycle
+	
+	- (void)dealloc {}
+	- (instancetype)init {}
+	- (void)viewDidLoad {}
+	- (void)viewWillAppear:(BOOL)animated {}
+	- (void)didReceiveMemoryWarning {}
+	
+	#pragma mark - Custom Accessors
+	
+	- (void)setCustomProperty:(id)value {}
+	- (id)customProperty {}
+	
+	#pragma mark - Protocol conformance
+	#pragma mark - UITextFieldDelegate
+	#pragma mark - UITableViewDataSource
+	#pragma mark - UITableViewDelegate
+	
+	#pragma mark - NSCopying
+	
+	- (id)copyWithZone:(NSZone *)zone {}
+	
+	#pragma mark - NSObject
+	
+	- (NSString *)description {}
+	```
 
 ## 代码格式化
 
@@ -150,52 +150,52 @@
 	> 换行后，也便于一眼找到else分支。
 
 
-```objc
-//赞成的
-if (a > 0) {
-
-	//Do Something
-} 
-else {
-
-	//Do Something
-}
-
-//不赞成的
-if (a > 0) {
-
-	//Do Something
-} else {
-
-	//Do Something
-}
-```
+	```objc
+	//赞成的
+	if (a > 0) {
+	
+		//Do Something
+	} 
+	else {
+	
+		//Do Something
+	}
+	
+	//不赞成的
+	if (a > 0) {
+	
+		//Do Something
+	} else {
+	
+		//Do Something
+	}
+	```
 	
 * 如果需要手动使用`@synthesize` 或 `@dynamic`，每行只能定义一个属性
 
 * 方法调用中，如果block参数需要换行时，block结尾的花括弧要和声明block那一行的第一个字符对齐
 
-```objc
-[operation setCompletionBlock:^{
-    [self.delegate newDataAvailable];
-}];
-```
+	```objc
+	[operation setCompletionBlock:^{
+	    [self.delegate newDataAvailable];
+	}];
+	```
 
 * 如果方法调用中部分的代码过长，造成内嵌的block代码缩进过长，可以适当的增加手动换行，以减少代码缩进
 
-```objc
-//如以下代码在loadWindowWithCompletionBlock前加了手动换行，是被提倡的：
-[[SessionService sharedService]
-    loadWindowWithCompletionBlock:^(SessionWindow *window) {
-    
-        if (window) {
-            [self windowDidLoad:window];
-        } 
-        else {
-            [self errorLoadingWindow];
-        }
-}];
-```
+	```objc
+	//如以下代码在loadWindowWithCompletionBlock前加了手动换行，是被提倡的：
+	[[SessionService sharedService]
+	    loadWindowWithCompletionBlock:^(SessionWindow *window) {
+	    
+	        if (window) {
+	            [self windowDidLoad:window];
+	        } 
+	        else {
+	            [self errorLoadingWindow];
+	        }
+	}];
+	```
 
 
 ## 注释
@@ -234,16 +234,16 @@ if (a > 0) {
 
 * 协议声明或定义中，类型标识符、协议名称、尖括号之间不留空格
 
-```objc
-@interface MyProtocoledClass : NSObject<NSWindowDelegate> 
-{
-    @private
-    id<MyFancyDelegate> _delegate;
-}
-
-- (void)setDelegate:(id<MyFancyDelegate>)aDelegate;
-@end
-```
+	```objc
+	@interface MyProtocoledClass : NSObject<NSWindowDelegate> 
+	{
+	    @private
+	    id<MyFancyDelegate> _delegate;
+	}
+	
+	- (void)setDelegate:(id<MyFancyDelegate>)aDelegate;
+	@end
+	```
 
 #### 方法
 
@@ -252,56 +252,56 @@ if (a > 0) {
 
 * 方法声明中，-/+和返回值之间要空1个空格，方法名和参数列表间不留空格
 
-```objc
-- (void)invokeWithTarget:(id)target; //正确
-- (void)invokeWithTarget: (id)target; //错误
-- (void)invokeWithTarget:(id) target; //错误
-- (void)invokeWithTarget: (id) target; //错误
-```
+	```objc
+	- (void)invokeWithTarget:(id)target; //正确
+	- (void)invokeWithTarget: (id)target; //错误
+	- (void)invokeWithTarget:(id) target; //错误
+	- (void)invokeWithTarget: (id) target; //错误
+	```
 
 * 方法声明中，参数过多超过一行时，每个参数占用一行，以冒号对齐
 
-```objc
-- (void)doSomethingWith:(GTMFoo *)theFoo
-                   rect:(NSRect)theRect               interval:(float)theInterval;
-```
+	```objc
+	- (void)doSomethingWith:(GTMFoo *)theFoo
+	                   rect:(NSRect)theRect	               interval:(float)theInterval;
+	```
 
 * 方法名第一段比其他部分短时，每个参数占用一行，每行至少缩进4个空格，尽量保持参数以冒号对齐
 	> 同时选中多行代码，用快捷键"command+["或"command+]"可以减少或增加缩进。
 
-```objc
-- (void)short:(GTMFoo *)theFoo
-              longKeyword:(NSRect)theRect
-        evenLongerKeyword:(float)theInterval
-                    error:(NSError **)theError; 
-```
+	```objc
+	- (void)short:(GTMFoo *)theFoo
+	              longKeyword:(NSRect)theRect
+	        evenLongerKeyword:(float)theInterval
+	                    error:(NSError **)theError; 
+	```
 
 * 方法名和参数名应该尽量读起来像一句话。具体参见[苹果的方法名命名规范](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingMethods.html)
 	> 如：convertPoint:fromRect: 或者 replaceCharactersInRange:withString:
 
 * 当各个参数是接收者的某个属性时，方法名中不要用"and"来连接
 
-```objc
-//赞成的
-- (int)runModalForDirectory:(NSString *)path file:(NSString *) name types:(NSArray *)fileTypes;
-
-//不赞成的
-- (int)runModalForDirectory:(NSString *)path andFile:(NSString *)name andTypes:(NSArray *)fileTypes;
-```
+	```objc
+	//赞成的
+	- (int)runModalForDirectory:(NSString *)path file:(NSString *) name types:(NSArray *)fileTypes;
+	
+	//不赞成的
+	- (int)runModalForDirectory:(NSString *)path andFile:(NSString *)name andTypes:(NSArray *)fileTypes;
+	```
 
 * 如果方法名描述了两种不同的动作，要使用"and"来连接
 
-```objc
-- (BOOL)openFile:(NSString *)fullPath withApplication:(NSString *)appName andDeactivate:(BOOL)flag;
-```
+	```objc
+	- (BOOL)openFile:(NSString *)fullPath withApplication:(NSString *)appName andDeactivate:(BOOL)flag;
+	```
 
 * getter方法的方法名应该和变量名字相同，不允许使用"get"前缀
 	> 本规则仅仅适用于Objective-C，C++使用C++的相关规范
 
-```objc
-- (id)delegate;		// 正确
-- (id)getDelegate;	//禁止
-```
+	```objc
+	- (id)delegate;		// 正确
+	- (id)getDelegate;	//禁止
+	```
 
 * 类私有方法以下划线开头
 	> 如：```- (void)_startDownloadFiles;```
@@ -328,43 +328,43 @@ if (a > 0) {
 
 * 创建NSString, NSDictionary, NSArray, 以及NSNumber等常量时，使用Literals语法。
 
-```objc
-//例如：
-NSArray names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
-NSDictionary productManagers = @{@"iPhone" : @"Kate", @"iPad" : @"Kamal", @"Mobile Web" : @"Bill"}; 
-NSNumber shouldUseLiterals = @YES; 
-NSNumber buildingZIPCode = @10018; 
-
-//而不是：
-NSArray names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil]; 
-NSDictionary productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil]; 
-NSNumber shouldUseLiterals = [NSNumber numberWithBool:YES]; 
-NSNumber ZIPCode = [NSNumber numberWithInteger:10018];
-```
+	```objc
+	//例如：
+	NSArray names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
+	NSDictionary productManagers = @{@"iPhone" : @"Kate", @"iPad" : @"Kamal", @"Mobile Web" : @"Bill"}; 
+	NSNumber shouldUseLiterals = @YES; 
+	NSNumber buildingZIPCode = @10018; 
+	
+	//而不是：
+	NSArray names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil]; 
+	NSDictionary productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil]; 
+	NSNumber shouldUseLiterals = [NSNumber numberWithBool:YES]; 
+	NSNumber ZIPCode = [NSNumber numberWithInteger:10018];
+	```
 
 * 定义枚举常量时，使用NS_ENUM或NS_OPTIONS
 	> NS_ENUM和NS_OPTIONS都提供了类型检查
 
-```objc
-//例如：
-typedef NS_ENUM(NSUInteger, PPNavBarButtonColor) {
-    PPNavBarButtonColorBlack,
-    PPNavBarButtonColorGreen,
-    PPNavBarButtonColorDefault = PPNavBarButtonColorBlack
-};
-
-typedef NS_OPTIONS(NSUInteger, PSTCollectionViewScrollPosition) {
-    PSTCollectionViewScrollPositionNone                 = 0,
+	```objc
+	//例如：
+	typedef NS_ENUM(NSUInteger, PPNavBarButtonColor) {
+	    PPNavBarButtonColorBlack,
+	    PPNavBarButtonColorGreen,
+	    PPNavBarButtonColorDefault = PPNavBarButtonColorBlack
+	};
 	
-    PSTCollectionViewScrollPositionTop                  = 1 << 0,
-    PSTCollectionViewScrollPositionCenteredVertically   = 1 << 1,
-    PSTCollectionViewScrollPositionBottom               = 1 << 2,
-	
-    PSTCollectionViewScrollPositionLeft                 = 1 << 3,
-    PSTCollectionViewScrollPositionCenteredHorizontally = 1 << 4,
-    PSTCollectionViewScrollPositionRight                = 1 << 5
-};
-```
+	typedef NS_OPTIONS(NSUInteger, PSTCollectionViewScrollPosition) {
+	    PSTCollectionViewScrollPositionNone                 = 0,
+		
+	    PSTCollectionViewScrollPositionTop                  = 1 << 0,
+	    PSTCollectionViewScrollPositionCenteredVertically   = 1 << 1,
+	    PSTCollectionViewScrollPositionBottom               = 1 << 2,
+		
+	    PSTCollectionViewScrollPositionLeft                 = 1 << 3,
+	    PSTCollectionViewScrollPositionCenteredHorizontally = 1 << 4,
+	    PSTCollectionViewScrollPositionRight                = 1 << 5
+	};
+	```
 
 * 定义常量时，除非明确的需要将常量当成宏使用，否则优先使用`const`，而非`#define`。
 
@@ -377,29 +377,29 @@ typedef NS_OPTIONS(NSUInteger, PSTCollectionViewScrollPosition) {
 
 * 常量名以小写k开头，采用首字母大写的方式来分割单词
 
-```objc
-//例如：
-const int kNumberOfFiles = 12;
-NSString *const kUserKey = @"kUserKey";
-enum DisplayTinge {
-	kDisplayTingeGreen = 1,
-	kDisplayTingeBlue = 2
-};
-```
+	```objc
+	//例如：
+	const int kNumberOfFiles = 12;
+	NSString *const kUserKey = @"kUserKey";
+	enum DisplayTinge {
+		kDisplayTingeGreen = 1,
+		kDisplayTingeBlue = 2
+	};
+	```
 
 * 和特定类型相关的枚举常量使用类名作为前缀，而不用小写k开头。
 
-```objc
-typedef NS_OPTIONS(NSUInteger, UICollectionViewScrollPosition) {
-    UICollectionViewScrollPositionNone                 = 0,
-    UICollectionViewScrollPositionTop                  = 1 << 0,
-    UICollectionViewScrollPositionCenteredVertically   = 1 << 1,
-    UICollectionViewScrollPositionBottom               = 1 << 2,
-    UICollectionViewScrollPositionLeft                 = 1 << 3,
-    UICollectionViewScrollPositionCenteredHorizontally = 1 << 4,
-    UICollectionViewScrollPositionRight                = 1 << 5
-};
-```
+	```objc
+	typedef NS_OPTIONS(NSUInteger, UICollectionViewScrollPosition) {
+	    UICollectionViewScrollPositionNone                 = 0,
+	    UICollectionViewScrollPositionTop                  = 1 << 0,
+	    UICollectionViewScrollPositionCenteredVertically   = 1 << 1,
+	    UICollectionViewScrollPositionBottom               = 1 << 2,
+	    UICollectionViewScrollPositionLeft                 = 1 << 3,
+	    UICollectionViewScrollPositionCenteredHorizontally = 1 << 4,
+	    UICollectionViewScrollPositionRight                = 1 << 5
+	};
+	```
 
 #### 变量
 
@@ -410,45 +410,45 @@ typedef NS_OPTIONS(NSUInteger, UICollectionViewScrollPosition) {
 * 禁止使用匈牙利标记法或含蓄不清的缩写单词来命名变量
 	> Objective-C中，变量名应该尽量清楚的描述它的用途。这样可以使别人立即明白代码的意思，不要担心这样会导致代码过长。
 
-```objc
-//以下这些都是错误的命名规范
-int w;
-int nerr;
-int nCompConns;
-tix = [[NSMutableArray alloc] init];
-obj = [someObject object];
-p = [network port];
-
-//以下这些才是赞成的命名规范
-int numErrors;
-int numCompletedConnections;
-tickets = [[NSMutableArray alloc] init];
-userInfo = [someObject object];
-port = [network port];
-```
+	```objc
+	//以下这些都是错误的命名规范
+	int w;
+	int nerr;
+	int nCompConns;
+	tix = [[NSMutableArray alloc] init];
+	obj = [someObject object];
+	p = [network port];
+	
+	//以下这些才是赞成的命名规范
+	int numErrors;
+	int numCompletedConnections;
+	tickets = [[NSMutableArray alloc] init];
+	userInfo = [someObject object];
+	port = [network port];
+	```
 
 * 指针符号 "*" 靠近变量名字。(常量定义除外)
 
-```objc
-NSString *varName; //赞成的
-
-NSString* varName; //不赞成的
-```
+	```objc
+	NSString *varName; //赞成的
+	
+	NSString* varName; //不赞成的
+	```
 
 * 使用property时，优先使用点语法
 	> 使用点语法会让代码简洁。但对于其他情况，都应该使用方括号语法。
 
-```objc
-//赞成的
-NSInteger arrayCount = [self.array count];
-view.backgroundColor = [UIColor orangeColor];
-[UIApplication sharedApplication].delegate;
-
-//不赞成的
-NSInteger arrayCount = self.array.count;
-[view setBackgroundColor:[UIColor orangeColor]];
-UIApplication.sharedApplication.delegate;
-```
+	```objc
+	//赞成的
+	NSInteger arrayCount = [self.array count];
+	view.backgroundColor = [UIColor orangeColor];
+	[UIApplication sharedApplication].delegate;
+	
+	//不赞成的
+	NSInteger arrayCount = self.array.count;
+	[view setBackgroundColor:[UIColor orangeColor]];
+	UIApplication.sharedApplication.delegate;
+	```
 
 #### 通知和异常
 
@@ -470,136 +470,136 @@ UIApplication.sharedApplication.delegate;
 	> 
 	> **因此C或C++中的非0为真并不一定就是YES**
 
-```objc
-//以下都是被禁止的
-- (BOOL)isBold 
-{
-    return [self fontTraits] & NSFontBoldTrait;
-}
-
-- (BOOL)isValid 
-{
-    return [self stringValue];
-}
-
-if ([self isBold] == YES) {
-	//...
-}
-
-
-//以下才是赞成的方式
-- (BOOL)isBold 
-{
-    return ([self fontTraits] & NSFontBoldTrait) ? YES : NO;
-}
-
-- (BOOL)isValid 
-{
-    return [self stringValue] != nil;
-}
-
-- (BOOL)isEnabled 
-{
-    return [self isValid] && [self isBold];
-}
-
-if ([self isBold]) {
-	//...
-}
-```
+	```objc
+	//以下都是被禁止的
+	- (BOOL)isBold 
+	{
+	    return [self fontTraits] & NSFontBoldTrait;
+	}
+	
+	- (BOOL)isValid 
+	{
+	    return [self stringValue];
+	}
+	
+	if ([self isBold] == YES) {
+		//...
+	}
+	
+	
+	//以下才是赞成的方式
+	- (BOOL)isBold 
+	{
+	    return ([self fontTraits] & NSFontBoldTrait) ? YES : NO;
+	}
+	
+	- (BOOL)isValid 
+	{
+	    return [self stringValue] != nil;
+	}
+	
+	- (BOOL)isEnabled 
+	{
+	    return [self isValid] && [self isBold];
+	}
+	
+	if ([self isBold]) {
+		//...
+	}
+	```
 
 * 虽然`nil`会被直接解释成`NO`，但还是建议在条件判断时保持与nil的比较，因为这样代码更直观。
 
-```objc
-//比如，更直观的代码
-if (someObject != nil) {
-	//...
-}
-
-//没那么直观的代码
-if (!someObject) {
-	//...
-}
-```
+	```objc
+	//比如，更直观的代码
+	if (someObject != nil) {
+		//...
+	}
+	
+	//没那么直观的代码
+	if (!someObject) {
+		//...
+	}
+	```
 
 * 在C或C++代码中，要注意NULL指针的检测。
 	> 向一个nil的Objective-C对象发送消息不会导致崩溃。但由于Objective-C运行时不会处理给NULL指针的情况，所以为了避免崩溃，需要自行处理对于C/C++的NULL指针的检测。
 
 * 如果某个`BOOL`类型的property的名字是一个形容词，建议为getter方法加上一个"is"开头的别名。
 
-```objc
-@property (assign, getter = isEditable) BOOL editable;
-```
+	```objc
+	@property (assign, getter = isEditable) BOOL editable;
+	```
 
 ## 条件语句
 
 * 条件语句的语句体，即便只有一行，也不能省略花括弧
 	> 这样可以减少失误。比如你在if语句体中增加第二行语句的时候，就可能会因为没有花括号而导致新增的第二行语句没有被包含在if语句体中。另外，[这里](http://programmers.stackexchange.com/a/16530)还提到了其他的一些危险情况。 
 
-```objc
-//赞成的
-if (error == nil) {
-  return success;
-}
-
-//不赞成的
-if (error == nil)
-  return success;
-  
-//或
-if (error == nil) return success;
-```
+	```objc
+	//赞成的
+	if (error == nil) {
+	  return success;
+	}
+	
+	//不赞成的
+	if (error == nil)
+	  return success;
+	  
+	//或
+	if (error == nil) return success;
+	```
 
 * 多层嵌套的条件语句，优先考虑条件不成立可以立即跳出的情况
 	> Objective-C的代码普遍比较长，如果再加上多层嵌套的条件语句，代码缩进会增多，代码会变得更长，会影响可读性。比如，下面这种情况，换成优先考虑可以跳出的情况，可以有效的减少代码缩进长度：
 
-```objc
-//一般流程
-if (a) {
-
-    if (b) {
-    
-        if (c) {
-        
-        	//do something
-       	} 
-    } 
-
-} 
-
-
-//优先考虑可以跳出的流程
-if (!a) {
-	return;
-}
-
-if (!b) {
-	return;
-}
-
-if (!c) {
-	return;
-}
-
-//do something
-```
+	```objc
+	//一般流程
+	if (a) {
+	
+	    if (b) {
+	    
+	        if (c) {
+	        
+	        	//do something
+	       	} 
+	    } 
+	
+	} 
+	
+	
+	//优先考虑可以跳出的流程
+	if (!a) {
+		return;
+	}
+	
+	if (!b) {
+		return;
+	}
+	
+	if (!c) {
+		return;
+	}
+	
+	//do something
+	```
 
 * 三目运算只有在能增加代码清晰度和整洁度的时候才推荐使用
 	> 三目运算符(?:)，如果不能增加代码整洁度和清晰度，使用时就要谨慎。特别是，嵌套使用多个三目运算，这种要尽量避免。因为它会使代码更难阅读。
 	> 
 	> 另外，三目运算符中的条件判断是一个语句，最好用小括号括起来。如果直接是一个布尔值则无需括号。例如：
 
-```objc
-//赞成的
-NSInteger value = 5;
-result = (value != 0) ? x : y;
-
-BOOL isHorizontal = YES;
-result = isHorizontal ? x : y;
-
-//不赞成的
-result = a > b ? x = c > d ? c : d : y;
-```
+	```objc
+	//赞成的
+	NSInteger value = 5;
+	result = (value != 0) ? x : y;
+	
+	BOOL isHorizontal = YES;
+	result = isHorizontal ? x : y;
+	
+	//不赞成的
+	result = a > b ? x = c > d ? c : d : y;
+	```
 
 ## 初始化方法
 
@@ -613,25 +613,25 @@ result = a > b ? x = c > d ? c : d : y;
 	> 
 	> 什么叫标准化处理，参见[CGGeometry Reference](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html)的Overview章节。
 
-```objc
-//赞成的
-CGRect frame = self.view.frame;
-
-CGFloat x = CGRectGetMinX(frame);
-CGFloat y = CGRectGetMinY(frame);
-CGFloat width = CGRectGetWidth(frame);
-CGFloat height = CGRectGetHeight(frame);
-CGRect frame = CGRectMake(0.0, 0.0, width, height);
-
-//不赞成的
-CGRect frame = self.view.frame;
-
-CGFloat x = frame.origin.x;
-CGFloat y = frame.origin.y;
-CGFloat width = frame.size.width;
-CGFloat height = frame.size.height;
-CGRect frame = (CGRect){ .origin = CGPointZero, .size = frame.size };
-```
+	```objc
+	//赞成的
+	CGRect frame = self.view.frame;
+	
+	CGFloat x = CGRectGetMinX(frame);
+	CGFloat y = CGRectGetMinY(frame);
+	CGFloat width = CGRectGetWidth(frame);
+	CGFloat height = CGRectGetHeight(frame);
+	CGRect frame = CGRectMake(0.0, 0.0, width, height);
+	
+	//不赞成的
+	CGRect frame = self.view.frame;
+	
+	CGFloat x = frame.origin.x;
+	CGFloat y = frame.origin.y;
+	CGFloat width = frame.size.width;
+	CGFloat height = frame.size.height;
+	CGRect frame = (CGRect){ .origin = CGPointZero, .size = frame.size };
+	```
 
 
 ## Xcode工程结构
