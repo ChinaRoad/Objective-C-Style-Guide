@@ -268,7 +268,8 @@
 
 ## 命名规范
 
-无论什么情况下，都要尽量坚持苹果命名规范，特别是涉及到[内存管理规则](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([non-ARC](http://stackoverflow.com/a/2865194/340508))时。
+无论什么情况下，都要尽量坚持苹果的命名规范，特别是涉及到[内存管理规则](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html)时
+> 这里的"内存管理规则"，强调的是底层Core Foundation框架中，名字带Create或Copy的函数，返回的对象，你要负责它的释放。
 
 #### 类名/类别名/协议
 
