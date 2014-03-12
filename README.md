@@ -659,7 +659,8 @@
 
 ## 初始化方法
 
-* 初始化方法的返回类型用`instancetype`
+* 初始化方法的返回类型用```instancetype```
+
 	> 关于instancetype的介绍参见[NSHipster.com](http://nshipster.com/instancetype/)。
 
 ## CGRect函数
