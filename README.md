@@ -308,7 +308,7 @@
 * 方法名和参数名都采用小驼峰式命名规则。
 	> 如：- (BOOL)isFileExistedAtPath:(NSString *)filePath;
 
-* 方法声明中，-/+和返回值之间要空1个空格，方法名和参数列表间不留空格
+* 方法声明中，-/+和返回值类型之间要空1个空格，方法名和参数类型之间以及参数类型和参数名之间不留空格
 
 	```objc
 	- (void)invokeWithTarget:(id)target; //正确
@@ -317,7 +317,7 @@
 	- (void)invokeWithTarget: (id) target; //错误
 	```
 
-* 方法声明中，参数过多超过一行时，每个参数占用一行，以冒号对齐
+* 方法声明中，参数过多超过一行时，可以增加手动换行，使每个参数占用一行，以冒号对齐
 
 	```objc
 	- (void)doSomethingWith:(GTMFoo *)theFoo
@@ -354,7 +354,7 @@
 	```
 
 * getter方法的方法名应该和变量名字相同，不允许使用"get"前缀
-	> 本规则仅仅适用于Objective-C，C++使用C++的相关规范
+	> 本规则仅适用于Objective-C，C++使用C++的相关规范
 
 	```objc
 	- (id)delegate;		// 正确
@@ -384,7 +384,7 @@
 
 #### 常量
 
-* 创建NSString, NSDictionary, NSArray, 以及NSNumber等常量时，使用Literals语法。
+* 创建NSString, NSDictionary, NSArray, 以及NSNumber等常量时，使用Literals语法
 
 	```objc
 	//例如：
@@ -424,7 +424,7 @@
 	};
 	```
 
-* 定义常量时，除非明确的需要将常量当成宏使用，否则优先使用`const`，而非`#define`。
+* 定义常量时，除非明确的需要将常量当成宏使用，否则优先使用`const`，而非`#define`
 
 * 只在某一个特定文件里面使用的常量，用static
 	> static关键字保证变量只有文件作用域，可以避免变量名重名造成的链接错误问题。
@@ -465,7 +465,9 @@
 
 * 实例变量名以下划线开头，局部变量不能以下划线开头
 
-* 禁止使用匈牙利标记法或含蓄不清的缩写单词来命名变量
+* 禁止使用匈牙利标记法或含糊不清的缩写单词来命名变量
+	> for循环中的i、j、k这种情况例外。
+	>
 	> Objective-C中，变量名应该尽量清楚的描述它的用途。这样可以使别人立即明白代码的意思，不要担心这样会导致代码过长。
 
 	```objc
@@ -700,3 +702,9 @@
 
 * 建议：在可能的情况下，始终要勾选在Build设置选项中”Treat Warnings as Errors（将告警视为错误）“选项。同时尽可能多的暴露更多的additional warnings(附加告警)。如果要忽略某类特定Warning（告警），请使用[Clang's pragma feature](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas)。
 	> 此条不做强制要求，但是"将警告视为错误"是你应当要有的态度。
+
+
+## 
+最后贴张图娱乐一下，虽然说Objective-C中长名是美德，但是什么东西还是要有个度。[有人](http://weibo.com/xiaoleiwang)写了个[脚本](https://github.com/Quotation/LongestCocoa)统计Cocoa Framework中各种最长的命名，结果发现低估了苹果程序员的造句能力。Mac平台最长的常量名96个字符，最长的方法名150个字符，C函数名都能到68个字符！ -_-# 泥煤，自从学会了Objective-C，妈妈再也不用担心我的造句能力了。
+
+![](http://ww1.sinaimg.cn/bmiddle/6b0f120dgw1ebvbkxggxij20dk0i4aeh.jpg)
