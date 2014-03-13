@@ -153,6 +153,7 @@
 	```
 
 * 实现文件中，函数体的左花括号另起一行，不和函数名同行
+	> 此条是为了和XCode模板生成的文件的代码风格保持一致。
 
 	```objc
 	//赞成的
@@ -171,7 +172,7 @@
 	```
 
 * 其他地方(`if`/`else`/`while`/`switch`等)，左花括号不单独另起一行。左花括号后面紧接着的代码块超过5行后，代码块和括号之间要有一行空行；代码块小于5行可以不空行
-	> 此条是为了兼容XCode代码提示生成的代码。
+	> 此条是为了和XCode自动代码补全生成的代码风格保持一致。
 
 
 	```objc
@@ -200,8 +201,8 @@
 	}
 	```
 
-* if/else中，else与if的右括号之间需要换行
-	> 为了防止else和上一个if代码块挨在一起，影响阅读，所以else和上一个if的右括号之间要换行。
+* 建议: if/else中，else与上一条分支语句的右括号之间需要换行
+	> 此条是为了防止else和上一个分支的代码块挨在一起，影响阅读，所以建议要换行。
 	> 
 	> 换行后，也便于快速定位到else分支。
 
@@ -257,7 +258,7 @@
 ## 注释
 
 * 注释应该尽量保持简洁，代码应该尽量达到能自我解释的程度
-	> 当然用于生成文档的注释除外
+	> 当然用于生成文档的注释除外，用于生成文档的注释要尽量详细，特别是你的接口可能有副作用的时候，要注释清楚。
 
 * 注释必须和代码保持同步。不要出现代码修改了，注释不更新的情况
 
@@ -307,7 +308,7 @@
 * 方法名和参数名都采用小驼峰式命名规则。
 	> 如：- (BOOL)isFileExistedAtPath:(NSString *)filePath;
 
-* 方法声明中，-/+和返回值之间要空1个空格，方法名和参数列表间不留空格
+* 方法声明中，-/+和返回值类型之间要空1个空格，方法名和参数类型之间以及参数类型和参数名之间不留空格
 
 	```objc
 	- (void)invokeWithTarget:(id)target; //正确
@@ -316,7 +317,7 @@
 	- (void)invokeWithTarget: (id) target; //错误
 	```
 
-* 方法声明中，参数过多超过一行时，每个参数占用一行，以冒号对齐
+* 方法声明中，参数过多超过一行时，可以增加手动换行，使每个参数占用一行，以冒号对齐
 
 	```objc
 	- (void)doSomethingWith:(GTMFoo *)theFoo
@@ -353,7 +354,7 @@
 	```
 
 * getter方法的方法名应该和变量名字相同，不允许使用"get"前缀
-	> 本规则仅仅适用于Objective-C，C++使用C++的相关规范
+	> 本规则仅适用于Objective-C，C++使用C++的相关规范
 
 	```objc
 	- (id)delegate;		// 正确
@@ -383,7 +384,7 @@
 
 #### 常量
 
-* 创建NSString, NSDictionary, NSArray, 以及NSNumber等常量时，使用Literals语法。
+* 创建NSString, NSDictionary, NSArray, 以及NSNumber等常量时，使用Literals语法
 
 	```objc
 	//例如：
@@ -423,7 +424,7 @@
 	};
 	```
 
-* 定义常量时，除非明确的需要将常量当成宏使用，否则优先使用`const`，而非`#define`。
+* 定义常量时，除非明确的需要将常量当成宏使用，否则优先使用`const`，而非`#define`
 
 * 只在某一个特定文件里面使用的常量，用static
 	> static关键字保证变量只有文件作用域，可以避免变量名重名造成的链接错误问题。
@@ -464,7 +465,9 @@
 
 * 实例变量名以下划线开头，局部变量不能以下划线开头
 
-* 禁止使用匈牙利标记法或含蓄不清的缩写单词来命名变量
+* 禁止使用匈牙利标记法或含糊不清的缩写单词来命名变量
+	> for循环中的i、j、k这种情况例外。
+	>
 	> Objective-C中，变量名应该尽量清楚的描述它的用途。这样可以使别人立即明白代码的意思，不要担心这样会导致代码过长。
 
 	```objc
@@ -699,3 +702,9 @@
 
 * 建议：在可能的情况下，始终要勾选在Build设置选项中”Treat Warnings as Errors（将告警视为错误）“选项。同时尽可能多的暴露更多的additional warnings(附加告警)。如果要忽略某类特定Warning（告警），请使用[Clang's pragma feature](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas)。
 	> 此条不做强制要求，但是"将警告视为错误"是你应当要有的态度。
+
+
+## Just for fun
+最后贴张图娱乐一下，虽然说Objective-C中长名是美德，但是什么东西还是要有个度。[有人](http://weibo.com/xiaoleiwang)写了个[脚本](https://github.com/Quotation/LongestCocoa)统计Cocoa Framework中各种最长的命名，结果发现低估了苹果程序员的造句能力。Mac平台最长的常量名96个字符，最长的方法名150个字符，C函数名都能到68个字符！ -_-# 泥煤，自从学会了Objective-C，妈妈再也不用担心我的造句能力了。
+
+![](http://ww1.sinaimg.cn/bmiddle/6b0f120dgw1ebvbkxggxij20dk0i4aeh.jpg)
