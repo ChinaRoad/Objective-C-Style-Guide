@@ -704,7 +704,7 @@
 	> 此条不做强制要求，但是"将警告视为错误"是你应当要有的态度。
 
 
-## 
+## Just for fun
 最后贴张图娱乐一下，虽然说Objective-C中长名是美德，但是什么东西还是要有个度。[有人](http://weibo.com/xiaoleiwang)写了个[脚本](https://github.com/Quotation/LongestCocoa)统计Cocoa Framework中各种最长的命名，结果发现低估了苹果程序员的造句能力。Mac平台最长的常量名96个字符，最长的方法名150个字符，C函数名都能到68个字符！ -_-# 泥煤，自从学会了Objective-C，妈妈再也不用担心我的造句能力了。
 
 ![](http://ww1.sinaimg.cn/bmiddle/6b0f120dgw1ebvbkxggxij20dk0i4aeh.jpg)
