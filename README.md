@@ -1,8 +1,3 @@
-# 深圳市神州路路通网络科技有限公司Objective-C编码规范
-
-此文档描述了深圳市神州路路通网络科技有限公司iOS开发团队的编程规范。
-
-
 
 ## 参考文档
 
@@ -321,7 +316,8 @@
 
 	```objc
 	- (void)doSomethingWith:(GTMFoo *)theFoo
-	                   rect:(NSRect)theRect	               interval:(float)theInterval;
+	                   rect:(NSRect)theRect
+	               interval:(float)theInterval;
 	```
 
 * 方法名第一段比其他部分短时，每个参数占用一行，每行至少缩进4个空格，尽量保持参数以冒号对齐
