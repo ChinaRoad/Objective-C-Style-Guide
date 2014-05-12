@@ -589,6 +589,22 @@
 	```objc
 	@property (assign, getter = isEditable) BOOL editable;
 	```
+	
+* 在方法实现中，如果有block参数，要注意检测block参数为nil的情况。
+
+```obc
+- (void)exitWithCompletion:(void(^)(void))completion
+{
+	// 错误。 如果外部调用此方法时completion传入nil，此处会发生EXC_BAD_ACCESS
+    completion();
+    
+    // 正确。如果completion不存在则不调用。
+    if (completion) {
+        completion();
+    }
+}
+```
+
 
 ## 条件语句
 
