@@ -1,8 +1,3 @@
-# 深圳市神州路路通网络科技有限公司Objective-C编码规范
-
-此文档描述了深圳市神州路路通网络科技有限公司iOS开发团队的编程规范。
-
-
 
 ## 参考文档
 
@@ -111,12 +106,10 @@
 	
 	```objc
 	//禁止的
-	- (void)loadView
-	{
+	- (void)loadView {
 		//load view...
 	}
-	- (void)viewDidLoad
-	{
+	- (void)viewDidLoad {
 		[super viewDidLoad];
 		
 		//Do Something...
@@ -124,13 +117,11 @@
 	
 	
 	//正确的
-	- (void)loadView
-	{
+	- (void)loadView {
 		//load view...
 	}
 	
-	- (void)viewDidLoad
-	{
+	- (void)viewDidLoad {
 		[super viewDidLoad];
 		
 		//Do Something...
@@ -143,8 +134,7 @@
 	> 因此这里要求将调用super的代码区隔开来，方便阅读，也方便查找是否忘记了对super的调用。
 
 	```objc
-	- (void)viewWillDisappear:(BOOL)animated
-	{
+	- (void)viewWillDisappear:(BOOL)animated {
 	    [super viewWillDisappear:animated];
 	    
 	    //空一行，将super方法的调用和重载代码区隔开来。
@@ -152,19 +142,19 @@
 	}
 	```
 
-* 实现文件中，函数体的左花括号另起一行，不和函数名同行
-	> 此条是为了和XCode模板生成的文件的代码风格保持一致。
+* 实现文件中，函数体的左花括号不另起一行，和函数名同行，并且和函数名之间保持1个空格
+	> 此条是为了和XCode6.1模板生成的文件的代码风格保持一致。
 
 	```objc
 	//赞成的
-	- (void)didReceiveMemoryWarning 
-	{
+	- (void)didReceiveMemoryWarning {
 	    [super didReceiveMemoryWarning];
 	    // Dispose of any resources that can be recreated.
 	}
 	
 	//不赞成的
-	- (void)didReceiveMemoryWarning {
+	- (void)didReceiveMemoryWarning
+	{
 	
 	    [super didReceiveMemoryWarning];
 	    // Dispose of any resources that can be recreated.
@@ -177,8 +167,7 @@
 
 	```objc
 	//赞成的
-	- (void)didReceiveMemoryWarning 
-	{
+	- (void)didReceiveMemoryWarning {
 	    [super didReceiveMemoryWarning];
 	    // Dispose of any resources that can be recreated.
 	    
@@ -290,6 +279,9 @@
 	> 
 	> 比如CRKit这个类库中，使用了CR前缀。
 
+* 建议：前缀至少使用三个字母
+	> 此条是为了减少命名冲突。但鉴于目前流行前缀大多都是两个字母，所以此条不做强制要求
+
 * 协议声明或定义中，类型标识符、协议名称、尖括号之间不留空格
 
 	```objc
@@ -321,7 +313,8 @@
 
 	```objc
 	- (void)doSomethingWith:(GTMFoo *)theFoo
-	                   rect:(NSRect)theRect	               interval:(float)theInterval;
+	                   rect:(NSRect)theRect
+	               interval:(float)theInterval;
 	```
 
 * 方法名第一段比其他部分短时，每个参数占用一行，每行至少缩进4个空格，尽量保持参数以冒号对齐
@@ -532,13 +525,11 @@
 
 	```objc
 	//以下都是被禁止的
-	- (BOOL)isBold 
-	{
+	- (BOOL)isBold {
 	    return [self fontTraits] & NSFontBoldTrait;
 	}
 	
-	- (BOOL)isValid 
-	{
+	- (BOOL)isValid {
 	    return [self stringValue];
 	}
 	
@@ -548,18 +539,15 @@
 	
 	
 	//以下才是赞成的方式
-	- (BOOL)isBold 
-	{
+	- (BOOL)isBold {
 	    return ([self fontTraits] & NSFontBoldTrait) ? YES : NO;
 	}
 	
-	- (BOOL)isValid 
-	{
+	- (BOOL)isValid {
 	    return [self stringValue] != nil;
 	}
 	
-	- (BOOL)isEnabled 
-	{
+	- (BOOL)isEnabled {
 	    return [self isValid] && [self isBold];
 	}
 	
@@ -590,6 +578,21 @@
 	```objc
 	@property (assign, getter = isEditable) BOOL editable;
 	```
+	
+* 在方法实现中，如果有block参数，要注意检测block参数为nil的情况。
+
+	```obc
+	- (void)exitWithCompletion:(void(^)(void))completion {
+		// 错误。 如果外部调用此方法时completion传入nil，此处会发生EXC_BAD_ACCESS
+	    completion();
+	    
+	    // 正确。如果completion不存在则不调用。
+	    if (completion) {
+	        completion();
+	    }
+	}
+	```
+
 
 ## 条件语句
 
