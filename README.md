@@ -68,7 +68,7 @@
 ## 代码格式化
 
 * 只用空格缩进，1个TAB = 4个空格字符
-	> 在XCode->Preferences->Text Editing->Indentation中进行如下设置：
+	> 在Xcode->Preferences->Text Editing->Indentation中进行如下设置：
 	>
 	> 1. Prefer indent using: 选择 Spaces
 	> 2. Tab key：选择 Intents in leading whitespace
@@ -79,14 +79,14 @@
 * 建议：每行代码的长度最多不超过100个字符
 	> 为了防止代码过长，也为了兼顾Macbook上的排版效果，将每行长度限制成100个字符。
 	>
-	>勾选XCode->Preferences->Text Editing->Editing，并将长度设置成100个字符来打开行宽指示。
+	>勾选Xcode->Preferences->Text Editing->Editing，并将长度设置成100个字符来打开行宽指示。
 	> 
 	> ps. Google倡导的每行80个字符有点少，会带来更频繁的换行，因此增加到100个字符。
 
 * 建议：尝试将单个函数或方法的实现代码控制在30行内
 	> 如果某个函数或方法的实现代码过长，可以考量下是否可以将代码拆分成几个小的拥有单一功能的方法。
 	>
-	> ps. 30行是在13寸macbook上XCode用14号字体时，恰好可以让一个函数的代码做到整屏完全显示的行数。
+	> ps. 30行是在13寸macbook上Xcode用14号字体时，恰好可以让一个函数的代码做到整屏完全显示的行数。
 
 * 建议：将单个实现文件里的代码行数控制在500～600行内
 	> 为了简洁和便于阅读，建议将单个实现文件的代码行数控制在500～600行以内最好。
@@ -99,7 +99,7 @@
 	> 
 	> 可以使用Objective-C的Category特性将实现文件归类分割成几个相对轻量级的实现文件。
 	> 
-	> 可以勾选上XCode->Preferences->Text Editing->Editing中的Line numbers，开启行号提示。
+	> 可以勾选上Xcode->Preferences->Text Editing->Editing中的Line numbers，开启行号提示。
 
 * 实现文件中，函数实现或方法实现之间必须至少有一行空行
 	> 没有空行，代码过长后，全粘在一起，很影响阅读。
@@ -143,7 +143,7 @@
 	```
 
 * 实现文件中，函数体的左花括号不另起一行，和函数名同行，并且和函数名之间保持1个空格
-	> 此条是为了和XCode6.1模板生成的文件的代码风格保持一致。
+	> 此条是为了和Xcode6.1模板生成的文件的代码风格保持一致。
 
 	```objc
 	//赞成的
@@ -162,7 +162,7 @@
 	```
 
 * 其他地方(`if`/`else`/`while`/`switch`等)，左花括号不单独另起一行。左花括号后面紧接着的代码块超过5行后，代码块和括号之间要有一行空行；代码块小于5行可以不空行
-	> 此条是为了和XCode自动代码补全生成的代码风格保持一致。
+	> 此条是为了和Xcode自动代码补全生成的代码风格保持一致。
 
 
 	```objc
@@ -252,10 +252,12 @@
 * 注释必须和代码保持同步。不要出现代码修改了，注释不更新的情况
 
 * 对函数或API接口的注释，都采用[Javadoc](http://en.wikipedia.org/wiki/Javadoc)风格规范
-	> 因为XCode5支持直接将Javadoc风格的注释生成文档。
+	> 因为Xcode5支持直接将Javadoc风格的注释生成文档。
 	> 
-	> 也有用于添加Javadoc风格注释的XCode插件：[VVDocumenter-Xcode](https://github.com/onevcat/VVDocumenter-Xcode)
-
+	> 也有用于添加Javadoc风格注释的Xcode插件：[VVDocumenter-Xcode](https://github.com/onevcat/VVDocumenter-Xcode)
+	>
+	> Xcode8已经内嵌VVDocumenter, 快捷键: option + command + /
+	
 ## 命名规范
 
 无论什么情况下，都要尽量坚持苹果的命名规范，特别是涉及到[内存管理规则](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html)时
@@ -700,8 +702,8 @@
 
 ## Xcode工程结构
 
-* 实体文件应该和XCode工程文件保持同步，防止出现文件不一致
-	> 任何手动创建的XCode Group都应该在文件系统有一个对应的文件夹。代码不仅要根据类型组织，更要以更加清晰的特征来区分归类。
+* 实体文件应该和Xcode工程文件保持同步，防止出现文件不一致
+	> 任何手动创建的Xcode Group都应该在文件系统有一个对应的文件夹。代码不仅要根据类型组织，更要以更加清晰的特征来区分归类。
 
 * 建议：在可能的情况下，始终要勾选在Build设置选项中”Treat Warnings as Errors（将告警视为错误）“选项。同时尽可能多的暴露更多的additional warnings(附加告警)。如果要忽略某类特定Warning（告警），请使用[Clang's pragma feature](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas)。
 	> 此条不做强制要求，但是"将警告视为错误"是你应当要有的态度。
